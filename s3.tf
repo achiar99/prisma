@@ -17,3 +17,14 @@ resource "aws_s3_bucket" "sample_bucket_achia_prisma" {
     yor_trace            = "c0d78c48-5f9e-4187-a04e-a6bb0e7ed9f8"
   }
 }
+
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "sample_bucket_achia_prisma" {
+  bucket = aws_s3_bucket.sample_bucket_achia_prisma.bucket
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "aws:kms"
+    }
+  }
+}
